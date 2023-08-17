@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Despertador em JavaScript</title>
+</head>
+<body>
+  <h1>Despertador</h1>
+  <label for="alarmTime">Definir horário do despertador: </label>
+  <input type="time" id="alarmTime">
+  <button onclick="setAlarm()">Definir Despertador</button>
+
+  <script>
+    // Define uma função chamada setAlarm()
+    function setAlarm() {
+      // Obtém o elemento HTML com o ID "alarmTime"
+      const alarmTimeInput = document.getElementById("alarmTime");
+      
+      // Cria um objeto Date representando o horário atual
+      const alarmTime = new Date();
+      
+      // Divide o valor do campo de entrada em horas e minutos
+      const [hours, minutes] = alarmTimeInput.value.split(":");
+      
+      // Define as horas e minutos no objeto Date do alarme
+      alarmTime.setHours(hours);
+      alarmTime.setMinutes(minutes);
+      
+      // Cria um novo objeto Date representando o horário atual
+      const currentTime = new Date();
+      
+      // Calcula o tempo restante até o alarme em milissegundos
+      const timeUntilAlarm = alarmTime - currentTime;
+      
+      // Verifica se o tempo restante até o alarme é menor ou igual a zero
+      if (timeUntilAlarm <= 0) {
+        // Exibe um alerta indicando que é hora de acordar
+        alert("Hora do despertador! Acorda!");
+      } else {
+        // Define um temporizador para exibir um alerta quando o tempo restante expirar
+        setTimeout(() => {
+          alert("Hora do despertador! Acorda!");
+        }, timeUntilAlarm);
+      }
+    }
+  </script>
+  
+</body>
+</html>
